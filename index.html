@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style media="screen">
+        .list-group-item > span{
+            cursor: pointer;
+        }
+    </style>
     <title>Document</title>
 </head>
 <body>
@@ -14,26 +19,19 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="page-header">
                   <h1>TODO list</h1>
-
                   <div class="list">
                       <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio <span class="badge">x</span></li>
+                        <li class="list-group-item">Wash my hair <span class="badge">x</span></li>
                       </ul>
-
-
-
-
-<form class="form-inline">
-  <div class="form-group">
-    <label class="sr-only" for="addItemInput">Email address</label>
-    <input type="text" class="addItemInput form-control" id="addItemInput">
-  </div>
-  <button class="addItemButton btn btn-primary">Add item
-      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-  </button>
-</form>
-
-
+                        <form class="form-inline">
+                          <div class="form-group">
+                            <label class="sr-only" for="addItemInput">Add Item</label>
+                            <input type="text" class="addItemInput form-control" id="addItemInput">
+                          </div>
+                          <button class="addItemButton btn btn-primary">Add item
+                              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                          </button>
+                        </form>
                   </div>
                 </div>
             </div>
@@ -42,7 +40,28 @@
 
 
 
+<script type="text/javascript">
+
+    (function() {
+        var todo = {
+            todo: ['Wash my hair', 'Laundry'],
+            init: function(){
+                this.cacheDom();
+            },
+            cacheDom: function(){
+                this.additeminput = documelector('button.addItemButton'); // add button
+                this.addItemButton = document.querySelector('button.addItemButton'); // add
+                console.log(additeminput);
+                console.log('----------------------------------');
+                console.log(addItemButton);
+            }
+
+        }
+        todo.init();
+
+    });
 
 
+</script>
 </body>
 </html>
