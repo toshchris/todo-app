@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style media="screen">
-        .list-group-item > span{
+        .list-group-item>span {
             cursor: pointer;
         }
     </style>
     <title>Document</title>
 </head>
+
 <body>
 
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="page-header">
-                  <h1>TODO list</h1>
-                  <div class="list">
-                      <ul class="list-group">
-                        <li class="list-group-item">Wash my hair <span class="badge">x</span></li>
-                      </ul>
+                    <h1>TODO list</h1>
+                    <div class="list">
+                        <ul class="list-group">
+
+                            <!--<li class="list-group-item">Wash my hair <span class="badge">x</span></li>-->
+
+                        </ul>
+
                         <form class="form-inline">
-                          <div class="form-group">
-                            <label class="sr-only" for="addItemInput">Add Item</label>
-                            <input type="text" class="addItemInput form-control" id="addItemInput">
-                          </div>
-                          <button class="addItemButton btn btn-primary">Add item
+                            <div class="form-group">
+                                <input type="text" class="addItemInput form-control">
+                            </div>
+                            <button class="addItemButton btn btn-primary">Add item
                               <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                           </button>
                         </form>
-                  </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,28 +45,86 @@
 
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
+        // var todos = ['Wash my hair', 'Laundry'];
+        //
+        // var additeminput = document.querySelector('input.addItemInput');
+        // var addItemButton = document.querySelector('button.addItemButton');
+        //
+        // addItemButton.addEventListener("click", addTodo);
+        //
+        // function addTodo (e){
+        //     var ul = document.querySelector('.list-group');
+        //     var li = document.createElement('li');
+        //         li.classList = "list-group-item";
+        //         li.textContent = additeminput.value;
+        //
+        //     e.preventDefault();
+        //     todos.push(additeminput.value);
+        //     if (!li.innerHTML == '') {
+        //         ul.appendChild(li);
+        //         li.appendChild(span);
+        //         additeminput.value = "";
+        //         // render();
+        //     }
+        // }
 
-    (function() {
+
+
         var todo = {
-            todo: ['Wash my hair', 'Laundry'],
-            init: function(){
+            todos: ['Wash my hair'],
+            init: function() {
                 this.cacheDom();
+                this.bindEvents();
+                this.render();
             },
-            cacheDom: function(){
-                this.additeminput = documelector('button.addItemButton'); // add button
-                this.addItemButton = document.querySelector('button.addItemButton'); // add
-                console.log(additeminput);
-                console.log('----------------------------------');
-                console.log(addItemButton);
-            }
+            cacheDom: function() {
+                this.additeminput = document.querySelector('input.addItemInput');
+                this.addItemButton = document.querySelector('button.addItemButton');
+                this.ul = document.querySelector('.list-group');
+                this.li = document.createElement('li');
+                this.li.classList = "list-group-item";
 
+            },
+            bindEvents: function() {
+                this.addItemButton.addEventListener("click", this.addTodo.bind(this));
+            },
+            render: function() {
+                this.todos.forEach(function(todo) {
+                    this.li.textContent = todo;
+                    return `${this.ul.appendChild(this.li)}`;
+                }, this);
+
+            },
+            addTodo: function(e) {
+                e.preventDefault();
+                this.todos.push(this.additeminput.value);
+                var ul = document.querySelector('.list-group');
+                var li = document.createElement('li');
+                li.classList = "list-group-item";
+                li.textContent = this.additeminput.value;
+
+                var span = document.createElement('span');
+                span.classList = "badge";
+                span.innerText = "x";
+
+                if (!li.innerHTML == '') {
+                    ul.appendChild(li);
+                    li.appendChild(span);
+                    this.additeminput.value = "";
+                    // this.addList(this.li);
+                    // this.render();
+                }
+            },
+            // populateList: function(platesList) {
+            //     platesList.innerHTML =
+            // }
+            // addList: function(list){
+            //     this.li.appendChild(this.btnRmv);
+            // }
         }
         todo.init();
-
-    });
-
-
-</script>
+    </script>
 </body>
+
 </html>
